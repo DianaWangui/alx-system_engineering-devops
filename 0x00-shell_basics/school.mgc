@@ -1,2 +1,2 @@
 #!/bin/bash
-(echo '0 string SCHOOL' | sudo tee /usr/share/misc/school.mgc) > /dev/null sudo file -C -m /usr/share/misc/school.mgc
+file * | sed 's/: */: /'
