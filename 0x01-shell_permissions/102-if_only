@@ -1,2 +1,2 @@
 #!/bin/bash
-chown -from=guillaume betty hello
+[ "$(stat -c %U hello)" = "guillaume"] | chown betty hello
