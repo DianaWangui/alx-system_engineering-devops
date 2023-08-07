@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -lt | grep -v '^total' | head -n 10 | awk '{print $9}'
+ls -lt | head -n 11 | tail -n 10
