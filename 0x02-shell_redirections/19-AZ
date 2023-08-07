@@ -1,0 +1,2 @@
+#!/bin/bash
+sed 'y/Ac/Ze/' <<< "Your input text with A and c characters"
