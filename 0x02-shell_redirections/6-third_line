@@ -1,3 +1,3 @@
 #!/bin/bash
-[ -f "iacta" ] | awk 'NR==3' "iacta"
+awk 'NR==3' iacta
 
