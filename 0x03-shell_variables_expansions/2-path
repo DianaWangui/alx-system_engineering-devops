@@ -1,2 +1,2 @@
 #!/bin/bash
-Export PATH="&PATH":/action >> ~/.bashrc
+export PATH="&PATH":/action >> ~/.bashrc
