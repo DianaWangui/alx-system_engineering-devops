@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Bash script that kills the process 7-highlander
+file_name="7-highlander"
+pids=$(pgrep -f "$file_name")
+if [ -n "$pids" ]; then
+  kill -9 "$pids"
+fi
