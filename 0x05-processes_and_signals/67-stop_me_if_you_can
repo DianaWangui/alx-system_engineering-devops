@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Bash script that stops 4-to_infinity_and_beyond process by using killall
+file_name="7-highlander"
+pkill -f $file_name
