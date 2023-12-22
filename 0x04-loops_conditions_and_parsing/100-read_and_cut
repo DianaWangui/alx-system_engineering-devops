@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# This script is displaying "Best School" 10 times
+# This Bash script that displays the content of the file 
 file="/etc/passwd"
 while IFS= read -r line; do
     cut -d: -f1,3,6 <<< "$line"
