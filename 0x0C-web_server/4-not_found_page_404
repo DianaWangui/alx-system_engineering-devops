@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# update and install nginx silently using -y flag
+
+sudo apt-get -y update
+sudo apt-get install -y nginx
+
+# Cofigure nginx to listen to port 80 and then  return Hello World! at the root
+
+sudo service nginx start
+
+sudo ufw allow 'Nginx HTTP'
+# Give the user ownership to website files for easy editing
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chmod -R 755 /var/www
+
+# Configure nginx to  have a custom 404 page that contains the string Ceci n'est pas une page
+
+sed -i "/listen 80 default_server;/ a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default
+
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+sed -i "/listen 80 default_server;/ a error_page 404 /404.html;" /etc/nginx/sites-available/default
+
+# Restart the nginx server
+sudo service nginx reload
+sudo service nginx restart
+echo -e "Nginx server is now running and listening on port 80\n"
