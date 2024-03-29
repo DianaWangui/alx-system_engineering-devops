@@ -23,4 +23,3 @@ sed -i "/listen 80 default_server;/ a error_page 404 /404.html;" /etc/nginx/site
 # Restart the nginx server
 sudo service nginx reload
 sudo service nginx restart
-echo -e "Nginx server is now running and listening on port 80\n"
