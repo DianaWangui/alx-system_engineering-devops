@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# update and install nginx silently using -y flag
+
+sudo apt-get update
+sudo apt-get install -y nginx
+
+# Cofigure nginx to listen to port 80 and then  retuen Hello World! at the root
+
+echo "server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /var/www/html;
+    index index.html index.htm index.nginx-debian.html;
+
+    server_name _;
+    location / {
+        echo 'Hello World!' > index.html;
+    }
+}" > /etc/nginx/sites-available/default
+
+# Restart the nginx server
+/etc/init.d/nginx restart
