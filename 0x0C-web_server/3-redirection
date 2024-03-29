@@ -6,12 +6,19 @@ sudo apt-get install -y nginx
 
 # Cofigure nginx to listen to port 80 and then  return Hello World! at the root
 
+sudo service nginx start
+
 sudo ufw allow 'Nginx HTTP'
+# Give the user ownership to website files for easy editing
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chmod -R 755 /var/www
+
 
 echo "Hello World!" | sudo tee /var/www/html/index.html > /dev/null
 
+# Configure nginx to redirect /redirect_me to another page with a "301 Moved Permanently" status
 sudo sed -i '/^}$/i \ \n\tlocation \/redirect_me {return 301 https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4;}' /etc/nginx/sites-available/default
-
 
 # Restart the nginx server
 sudo service nginx restart
+echo -e "Nginx server is now running and listening on port 80\n"
