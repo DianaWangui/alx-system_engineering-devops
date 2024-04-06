@@ -1,2 +1,3 @@
 #!/usr/bin/bash env
+# A bash script to debug
 service apache2 start
