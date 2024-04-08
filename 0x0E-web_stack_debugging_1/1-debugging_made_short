@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This script fixes the issue of nginx not running at port 80
+ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+service nginx start
+service nginx stop
