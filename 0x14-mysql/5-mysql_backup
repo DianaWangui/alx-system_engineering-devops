@@ -19,12 +19,16 @@ if [ $? -ne 0 ]; then
 fi
 
 # Compress the MYSQL dump into a tar.gz archive
-tar -czvf "${date}.tar.gz" backup.sql
+#tar -czvf "${date}.tar.gz" backup.sql
+
+gzip backup.sql
 
 # Checking if the compression was successful
 if [ $? -eq 0 ]; then
 	echo "Backup complete"
 else
 	echo "Backup failed"
+	exit 1
 fi
+mv backup.sql.gz "${date}.tar.gz"
 
