@@ -1,0 +1,29 @@
+#/usr/bin/env bash
+if [ $# -ne 1 ]; then
+	echo "Provide password"
+	exit 1
+fi
+
+# Password and getting the current date format
+my_pass="$1"
+date=$(date +%d-%m-%Y)
+
+# dump all databases to backup.sql
+mysqldump -u root -p"${my_pass}" --all-databases > backup.sql
+
+# Check if MYSQL dump was successful
+if [ $? -ne 0 ]; then
+	echo "MySQL dump failed. Exiting."
+	exit 1
+fi
+
+# Compress the MYSQL dump into a tar.gz archive
+tar -czvf "${date}.tar.gz" backup.sql
+
+# Checking if the compression was successful
+if [ $? -eq 0 ]; then
+	echo "Backup complete"
+else
+	echo "Backup failed"
+fi
+
