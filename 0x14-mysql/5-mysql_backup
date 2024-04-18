@@ -1,4 +1,4 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
 if [ $# -ne 1 ]; then
 	echo "Provide password"
 	exit 1
