@@ -7,7 +7,6 @@ import requests
 import sys
 
 
-
 if __name__ == "__main__":
     todos = requests.get('https://jsonplaceholder.typicode.com/todos')
     users = requests.get('https://jsonplaceholder.typicode.com/users')
