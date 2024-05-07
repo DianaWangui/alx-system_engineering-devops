@@ -1,11 +1,14 @@
 #!/usr/bin/python3
-""" 2-recursive module """
+"""2-recursive module."""
 import requests
 
 
 def recurse(subreddit, hot_list=[], after=None):
-    """ Queries the Reddit API and returns a list containing
-    the titles of all hot articles for a given subreddit. """
+    """
+    Query the Reddit API and returns a list containing.
+
+    the titles of all hot articles for a given subreddit.
+    """
     url = f'https://www.reddit.com/r/{subreddit}/hot.json'
     head = {'User-Agent': 'Mozilla/5.0'}
     p = {'limit': 100}
