@@ -1,0 +1,50 @@
+server {
+        listen 80;
+        listen [::]:80 default_server;
+
+        server_name 54.237.118.67
+
+        add_header X-Served-By "500134-web-01" always;
+        # add_header X-Served-By $host always;
+
+        location = /airbnb-onepage/ {
+                # Proxy requests to the Gunicorn application running on port 5000
+                proxy_pass http://127.0.0.1:5000/airbnb-onepage/;
+                add_header X-Served-By "500134-web-01";
+        }
+
+        location ~  /airbnb-dynamic/number_odd_or_even/(\d+)$ {
+                # Proxy requests to the Gunicorn application running on port 5001
+                proxy_pass http://0.0.0.0:5001/number_odd_or_even/$1;
+        }
+
+        location /api/ {
+                # serve airbnb API
+                proxy_pass http://127.0.0.1:5002/api;
+        }
+
+        location / {
+                # config /2-hbnb route of airnbn_v4
+                proxy_pass http://127.0.0.1:5003/2-hbnb;
+        }
+
+        location /static {
+                # serve the airbnb_v4 static contect
+                alias web_dynamic/static/;
+        }
+
+        location /redirect_me {
+                return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+        }
+        location @404 {
+                 return 404 "Ceci n'est pas une page.";
+        }
+
+        location /hbnb_static {
+                 alias /data/web_static/current/;
+        }
+
+
+        root /var/www/html;
+        error_page 404 = @404;
+}
